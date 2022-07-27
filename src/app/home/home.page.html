@@ -1,0 +1,24 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-searchbar type="text" [(ngModel)]="searchedText" (ionInput)="filterData($event.target.value, false)" (ionClear)="closeFilter()">
+    </ion-searchbar>
+    <ion-select interface="action-sheet" [(ngModel)]="selectedAppearance" slot="end" cancel-text="Clear filter"
+      mode="ios" (ionCancel)="clearFilter()" (ionChange)="selectApperFilter($event.target.value)">
+      <ion-select-option [value]="i" *ngFor="let i of appearance">S{{i}}</ion-select-option>
+    </ion-select>
+  </ion-toolbar>
+  <ion-list *ngIf="dataList.length != 0 && isSearchStart" class="search-list">
+    <ion-item *ngFor="let i of dataList" style="width: 100%;" (click)="filterData(i.name,true)">
+      {{i.name}}
+    </ion-item>
+  </ion-list>
+  <img *ngIf="dataList.length == 0" class="emptyImg" src="../../assets/images/empty_icon.svg">
+  <ion-slides [options]="slideOpts" *ngIf="dataList.length">
+    <ion-slide *ngFor="let item of dataList">
+      <img [src]="item.img" alt="" srcset="">
+      <ion-item (click)="openItemDetail(item)" lines="none" class="labelName">
+        <label>{{item.name}}</label>
+      </ion-item>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

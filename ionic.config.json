@@ -1,0 +1,10 @@
+{
+  "name": "breking_Back",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}
